@@ -34,6 +34,11 @@ function ToDoList() {
     }
 
     function handleSaveEditedTask() {
+        if (!editedText.trim()) {
+            // Do not save if the edited text is empty or only contains whitespace
+            return;
+        }
+    
         setTask(function (prevTask) {
             return prevTask.map(function (item, index) {
                 return index === editingIndex ? editedText : item; // Replace the task at editingIndex with the new text
@@ -42,6 +47,7 @@ function ToDoList() {
         setEditingIndex(null); // Reset editing state
         setEditedText(""); // Clear the input field
     }
+    
 
 
     return (
@@ -61,7 +67,7 @@ function ToDoList() {
                                         onChange={function (e) {
                                             setEditedText(e.target.value);
                                         }}
-                                        className="bg-purple-950 text-white"
+                                        className="bg-white text-black"
                                         autoFocus
                                     />
                                 ) 
